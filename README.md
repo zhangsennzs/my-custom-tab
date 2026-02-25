@@ -28,16 +28,36 @@
 5. 选择你刚刚解压的文件夹（需确保文件夹内包含 `manifest.json`）。
 6. 打开一个新标签页 (`Ctrl + T`)，享受你的全新桌面！
 
-## 📂 文件结构说明
+## 📂 文件结构说明 (File Structure)
+
+本项目采用轻量级的原生 HTML/JS/CSS 架构开发，未引入复杂的构建工具（如 Webpack/Vite），方便随时打开代码进行二次修改与折腾。
+
+以下是 V1.0.5 版本的核心文件清单及功能解析：
 
 ```text
-├── BJ/
-│   └── bj.png                # 默认初始背景图
-├── icons/
-│   ├── icon16.png            # 扩展图标集 (需根据个人喜好替换)
-│   ├── icon48.png
-│   └── icon128.png
-├── index.html                # 新标签页主界面 (DOM 框架与 CSS 样式)
-├── main.js                   # 核心交互、拖拽初始化与异步存储逻辑
-├── manifest.json             # 扩展配置文件 (权限声明与入口绑定)
-└── Sortable.min.js           # 本地化拖拽引擎 (完美符合 CSP 安全策略)
+📦 GeekTab (项目根目录)
+ ├── 📁 BJ/
+ │    └── 🖼️ bj.png                # 默认初始背景壁纸 (如果删除了请在代码中替换默认路径)
+ ├── 📁 icons/
+ │    ├── 🖼️ icon16.png            # 扩展图标 (16x16) - 供浏览器标签页和收藏夹使用
+ │    ├── 🖼️ icon48.png            # 扩展图标 (48x48) - 供扩展程序管理页面使用
+ │    └── 🖼️ icon128.png           # 扩展图标 (128x128) - 供安装界面及 Chrome 商店使用
+ │
+ ├── 📄 manifest.json             # ⚙️ 扩展核心配置文件 (Manifest V3 身份证)
+ │                                  # 声明了新标签页接管权限、无限制存储权限 (unlimitedStorage) 
+ │                                  # 以及请求百度联想 API 的主机跨域权限 (host_permissions)。
+ │
+ ├── 📄 background.js             # 👻 后台服务线程 (Service Worker)
+ │                                  # [V1.0.5 新增] 专职负责突破前端页面的 CORS 跨域限制。
+ │                                  # 负责将百度 OpenSearch 接口返回的古老 GBK 编码转换为 UTF-8，解决中文乱码。
+ │
+ ├── 📄 index.html                # 🪟 新标签页主界面
+ │                                  # 包含 DOM 骨架与全局 CSS 样式（毛玻璃动效、全局 CSS 变量、严格的字体继承规范）。
+ │
+ ├── 📄 main.js                   # 🧠 核心前端交互中枢
+ │                                  # 负责时钟更新、防抖智能搜索联想、小组件/快捷方式的动态渲染。
+ │                                  # 统筹管理 Sortable 拖拽绑定、chrome.storage.local 异步数据读写，以及旧版 localStorage 的无损迁移。
+ │
+ └── 📄 Sortable.min.js           # 🖱️ 物理拖拽引擎 (本地化)
+                                    # 为了完美通过 Chrome 扩展极其严格的内容安全策略 (CSP: script-src 'self')，
+                                    # 彻底摒弃了外部 CDN 引入，改为本地直读，确保全局拖拽功能绝对稳定。
