@@ -2,7 +2,7 @@
 
 一款美观、轻量且高度可定制的浏览器新标签页扩展 (Manifest V3)。专为热爱折腾网络部署、搭建本地服务以及管理高频资讯的极客玩家打造。无缝接管默认桌面，集成内网直达、分类管理与全自由拖拽布局。
 
-![版本](https://img.shields.io/badge/version-1.0.3-blue.svg)
+![版本](https://img.shields.io/badge/version-1.0.5-blue.svg)
 ![架构](https://img.shields.io/badge/Manifest-V3-brightgreen.svg)
 ![存储](https://img.shields.io/badge/Storage-Unlimited-orange.svg)
 
